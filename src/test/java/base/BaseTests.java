@@ -12,7 +12,7 @@ import pages.HomePage;
 
 public class BaseTests {
 	
-	private static WebDriver driver;
+	public static WebDriver driver;
 	protected HomePage homePage;
 	
 	@BeforeAll
@@ -20,15 +20,12 @@ public class BaseTests {
 		System.setProperty("webdriver.chrome.driver", "C:\\webdrivers\\chromedriver\\83\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-	}
-	
-	public void loadHomePage() {
 		driver.get("https://www.americanas.com.br/");
-		homePage = new HomePage(driver);
 	}
 	
 	@AfterAll
 	public static void closeBrowser() {
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		driver.quit();
 	}
 	}
