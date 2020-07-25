@@ -2,8 +2,6 @@ package homepage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.concurrent.TimeUnit;
-
 import org.junit.jupiter.api.Test;
 
 import base.BaseTests;
@@ -13,19 +11,27 @@ import pages.ProductListPage;
 import pages.ProductWarrantyPage;
 import pages.SelectedConsolePage;
 
+/**
+ * Classe de teste do fluxo de inclusão de Play Station 4 no carrinho de compras.
+ * @author Danielle
+ *
+ */
 public class HomePageTests extends BaseTests {
 	
-	// Related to HomePage screen. This method will load the page and
-	@Test 
+	// Método de teste do fluxo de inclusão de Play Station 4 no carrinho de compras.
+	@Test
 	public void testAddProductToCart_ProductAddedSuccessfully() {
 		
+		// Busca do produto PS4 na página inicial
 		HomePage homePage = new HomePage(driver);
 		homePage.findConsole("ps4");
 		homePage.clickButtonSearch();
 		
+		// Página de listagem dos produtos encontrado ao clicar no botão de busca
 		ProductListPage  productPage = new ProductListPage(driver);
 		productPage.clickSelectedConsole();
 		
+		// Página de detalhamento do produto selecionado na tela de listagem de produtos
 		SelectedConsolePage selectedConsolePage = new SelectedConsolePage(driver);
 		String productName = selectedConsolePage.getProductName();
 	    String productPrice = selectedConsolePage.getProductPrice();
@@ -34,17 +40,22 @@ public class HomePageTests extends BaseTests {
 	    selectedConsolePage.getFreightValue();
 	    selectedConsolePage.clickButtonBuy();
 	    
+	    // Página de seleção de garantia estendida do produto
 	    ProductWarrantyPage productWarrantyPage = new ProductWarrantyPage(driver);
+	    
+	    // Obtenção dos campos relativos a garantia estendida estão resultando em TimeOut
 		//productWarrantyPage.clickInputWarranty();
 		productWarrantyPage.clickButtonContinue();
 		
+		// Página de detalhamento do carrinho com o produto incluído.
 		CartPage carPage = new CartPage(driver);
 		String productNameInCart = carPage.getProductNameInCart();
 		String productPriceInCart = carPage.getProductPriceInCart();
 		
+		// Verificando se o nome do produto obtido na página de detalhamento é igual ao nome do produto adicionado ao carrinho
 		assertEquals(productName, productNameInCart);
-		assertEquals(productPrice, productPriceInCart);
 		
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		// Verificando se o preço do produto obtido na página de detalhamento é igual ao preço do produto adicionado ao carrinho
+		assertEquals(productPrice, productPriceInCart);
 	}
 }
