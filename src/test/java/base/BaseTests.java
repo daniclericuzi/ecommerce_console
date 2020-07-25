@@ -25,7 +25,7 @@ public class BaseTests {
 	
 	@AfterAll
 	public static void closeBrowser() {
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		
 		driver.quit();
 	}
 	}

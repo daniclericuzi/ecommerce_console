@@ -9,14 +9,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ProductWarrantyPage {
+public class ProductWarrantyPage extends Page {
 	
-	private WebDriver driver;
-	
-	public ProductWarrantyPage(WebDriver driver) { this.driver = driver; }
+	public ProductWarrantyPage(WebDriver driver) { super(driver); }
 	
 	private By buttonContinue = By.id("btn-continue");
-	private By label = By.className("Input-sc-1x9td29-3");
+	/*private By label = By.cssSelector(".service-options__RadioContainer-sc-6v3x4r-12");
 	
 	public void clickInputWarranty() { 
 		List<WebElement> warrantyList = driver.findElements(label);
@@ -24,12 +22,11 @@ public class ProductWarrantyPage {
 			if (i == 1) {
 				warrantyList.get(i).click();
 			}
-		}
-		}
+		} 
+		} */
 
 	public void clickButtonContinue() {
-		WebDriverWait wait = new WebDriverWait(driver, 5);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(label));
+		wait(buttonContinue);
 		driver.findElement(buttonContinue).click();	
 	}
 
