@@ -1,7 +1,5 @@
 # Automação de Testes do e-commerce das lojas Americanas
 
-Automação de Testes do e-commerce das lojas Americanas
-
 Projeto de Automação de Teste criado com a API Selenium WebDriver e framework JUnit para estruturação dos casos de teste, verificação das saídas e testes. Utilização do padrão PageObject, em linguagem Java (utilizando a IDE Eclipse), com o objeto de solucionar o desafio abaixo:
 
 - 1- Acessar o site www.americanas.com
